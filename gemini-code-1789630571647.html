@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Kiểm Tra Từ Vựng Tiếng Anh Nâng Cao (15 Câu)</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --accent-color: #2563eb;
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-color: #0f172a;
+            --border-color: #cbd5e1;
+            --correct-color: #16a34a;
+            --incorrect-color: #dc2626;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 1.8rem;
+        }
+
+        .description {
+            text-align: center;
+            color: #475569;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .user-info {
+            background-color: #eff6ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .required-asterisk {
+            color: #dc2626;
+        }
+
+        input[type="text"] {
+            padding: 12px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .section-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            margin: 25px 0 15px 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .question-card {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .question-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1e293b;
+        }
+
+        .target-word {
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .options-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        @media (max-width: 640px) {
+            .options-group {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 20px;
+            }
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .option-label:hover {
+            background-color: #f8fafc;
+            border-color: var(--accent-color);
+        }
+
+        .option-label input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 30px;
+        }
+
+        .submit-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        #resultBox {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #166534;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Vocabulary & Terminology Assessment</h1>
+    <p class="description">Bài kiểm tra từ đồng nghĩa (Synonyms) & Nghĩa của cụm chuyên ngành (15 câu)</p>
+
+    <form id="quizForm" onsubmit="calculateScore(event)">
+        <!-- Student Info Section -->
+        <div class="user-info">
+            <div class="form-group">
+                <label for="studentName">Họ và tên học sinh <span class="required-asterisk">*</span></label>
+                <input type="text" id="studentName" name="studentName" placeholder="Nhập đầy đủ họ và tên" required>
+            </div>
+        </div>
+
+        <!-- PART 1: SYNONYMS -->
+        <div class="section-header">PHẦN 1: TÌM TỪ ĐỒNG NGHĨA (SYNONYMS)</div>
+
+        <!-- Q1 -->
+        <div class="question-card">
+            <div class="question-title">1. Choose the closest synonym for: <span class="target-word">CORROBORATE</span></div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q1" value="A" required> A. Reject</label>
+                <label class="option-label"><input type="radio" name="q1" value="B"> B. Verify</label>
+                <label class="option-label"><input type="radio" name="q1" value="C"> C. Confuse</label>
+                <label class="option-label"><input type="radio" name="q1" value="D"> D. Predict</label>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="question-card">
+            <div class="question-title">2. Choose the closest synonym for: <span class="target-word">MITIGATE</span></div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q2" value="A" required> A. Lessen</label>
+                <label class="option-label"><input type="radio" name="q2" value="B"> B. Increase</label>
+                <label class="option-label"><input type="radio" name="q2" value="C"> C. Postpone</label>
+                <label class="option-label"><input type="radio" name="q2" value="D"> D. Ignore</label>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="question-card">
+            <div class="question-title">3. Choose the closest synonym for: <span class="target-word">VOLATILE</span></div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q3" value="A" required> A. Unstable</label>
+                <label class="option-label"><input type="radio" name="q3" value="B"> B. Permanent</label>
+                <label class="option-label"><input type="radio" name="q3" value="C"> C. Reliable</label>
+                <label class="option-label"><input type="radio" name="q3" value="D"> D. Ordinary</label>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="question-card">
+            <div class="question-title">4. Choose the closest synonym for: <span class="target-word">ERADICATE</span></div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q4" value="A" required> A. Eliminate completely</label>
+                <label class="option-label"><input type="radio" name="q4" value="B"> B. Discover</label>
+                <label class="option-label"><input type="radio" name="q4" value="C"> C. Reduce slightly</label>
+                <label class="option-label"><input type="radio" name="q4" value="D"> D. Preserve</label>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="question-card">
+            <div class="question-title">5. Choose the closest synonym for: <span class="target-word">SCRUTINY</span></div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q5" value="A" required> A. Celebration</label>
+                <label class="option-label"><input type="radio" name="q5" value="B"> B. Trust</label>
+                <label class="option-label"><input type="radio" name="q5" value="C"> C. Close examination</label>
+                <label class="option-label"><input type="radio" name="q5" value="D"> D. Approval</label>
+            </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="question-card">
+            <div class="question-title">6. Choose the closest synonym for: <span class="target-word">EXACERBATE</span></div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q6" value="A" required> A. Make worse</label>
+                <label class="option-label"><input type="radio" name="q6" value="B"> B. Improve</label>
+                <label class="option-label"><input type="radio" name="q6" value="C"> C. Solve</label>
+                <label class="option-label"><input type="radio" name="q6" value="D"> D. Prevent</label>
+            </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="question-card">
+            <div class="question-title">7. Choose the closest synonym for: <span class="target-word">PROLIFERATION</span></div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q7" value="A" required> A. Rapid growth</label>
+                <label class="option-label"><input type="radio" name="q7" value="B"> B. Decline</label>
+                <label class="option-label"><input type="radio" name="q7" value="C"> C. Disappearance</label>
+                <label class="option-label"><input type="radio" name="q7" value="D"> D. Stagnation</label>
+            </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="question-card">
+            <div class="question-title">8. Choose the closest synonym for: <span class="target-word">INADVERTENTLY</span></div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q8" value="A" required> A. Intentionally</label>
+                <label class="option-label"><input type="radio" name="q8" value="B"> B. Carefully</label>
+                <label class="option-label"><input type="radio" name="q8" value="C"> C. Unintentionally</label>
+                <label class="option-label"><input type="radio" name="q8" value="D"> D. Efficiently</label>
+            </div>
+        </div>
+
+        <!-- PART 2: SPECIALIZED TERMINOLOGY -->
+        <div class="section-header">PHẦN 2: NGHĨA CỦA CỤM TỪ CHUYÊN NGÀNH</div>
+
+        <!-- Q9 -->
+        <div class="question-card">
+            <div class="question-title">9. Cụm từ chuyên ngành Y học <span class="target-word">"SLEEP APNEA"</span> có nghĩa là gì?</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q9" value="A" required> A. Chứng mất ngủ mãn tính</label>
+                <label class="option-label"><input type="radio" name="q9" value="B"> B. Hội chứng ngưng thở khi ngủ</label>
+                <label class="option-label"><input type="radio" name="q9" value="C"> C. Rối loạn mộng du</label>
+                <label class="option-label"><input type="radio" name="q9" value="D"> D. Chứng ngủ ngáy kéo dài</label>
+            </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="question-card">
+            <div class="question-title">10. Cụm từ chuyên ngành Y học / Tâm lý <span class="target-word">"DEMENTIA"</span> có nghĩa là gì?</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q10" value="A" required> A. Hội chứng sa sút trí tuệ</label>
+                <label class="option-label"><input type="radio" name="q10" value="B"> B. Bệnh trầm cảm nặng</label>
+                <label class="option-label"><input type="radio" name="q10" value="C"> C. Rối loạn lo âu</label>
+                <label class="option-label"><input type="radio" name="q10" value="D"> D. Chứng tâm thần phân liệt</label>
+            </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="question-card">
+            <div class="question-title">11. Cụm từ chuyên ngành Kinh tế / Tiêu dùng <span class="target-word">"IMPULSE BUYING"</span> biểu thị hành vi gì?</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q11" value="A" required> A. Mua sắm có kế hoạch trước</label>
+                <label class="option-label"><input type="radio" name="q11" value="B"> B. Mua sắm hàng trả góp</label>
+                <label class="option-label"><input type="radio" name="q11" value="C"> C. Mua sắm ngẫu hứng / bột phát</label>
+                <label class="option-label"><input type="radio" name="q11" value="D"> D. Mua sắm qua mạng</label>
+            </div>
+        </div>
+
+        <!-- Q12 -->
+        <div class="question-card">
+            <div class="question-title">12. Thuật ngữ Xã hội / Lao động <span class="target-word">"DIGITAL NOMAD"</span> dùng để chỉ nhóm đối tượng nào?</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q12" value="A" required> A. Kỹ sư lập trình mạng</label>
+                <label class="option-label"><input type="radio" name="q12" value="B"> B. Người làm việc từ xa và di chuyển tự do</label>
+                <label class="option-label"><input type="radio" name="q12" value="C"> C. Chuyên gia kinh doanh bất động sản</label>
+                <label class="option-label"><input type="radio" name="q12" value="D"> D. Học sinh học trực tuyến hoàn toàn</label>
+            </div>
+        </div>
+
+        <!-- Q13 -->
+        <div class="question-card">
+            <div class="question-title">13. Khái niệm Giáo dục <span class="target-word">"EDUCATIONAL EQUITY"</span> hướng tới điều gì?</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q13" value="A" required> A. Sự bình đẳng / công bằng trong giáo dục</label>
+                <label class="option-label"><input type="radio" name="q13" value="B"> B. Việc thương mại hóa môi trường học đường</label>
+                <label class="option-label"><input type="radio" name="q13" value="C"> C. Sự nâng cao độ khó của kỳ thi quốc gia</label>
+                <label class="option-label"><input type="radio" name="q13" value="D"> D. Áp lực thành tích trong học tập</label>
+            </div>
+        </div>
+
+        <!-- Q14 -->
+        <div class="question-card">
+            <div class="question-title">14. Thuật ngữ Marketing <span class="target-word">"DECEPTIVE PRICING"</span> ám chỉ điều gì?</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q14" value="A" required> A. Chiến lược định giá cạnh tranh</label>
+                <label class="option-label"><input type="radio" name="q14" value="B"> B. Chiến lược định giá lừa dối / gây hiểu lầm</label>
+                <label class="option-label"><input type="radio" name="q14" value="C"> C. Việc giảm giá thanh lý hàng tồn kho</label>
+                <label class="option-label"><input type="radio" name="q14" value="D"> D. Bảng giá niêm yết công khai</label>
+            </div>
+        </div>
+
+        <!-- Q15 -->
+        <div class="question-card">
+            <div class="question-title">15. Thuật ngữ Giáo dục <span class="target-word">"MAINSTREAM CLASSROOM"</span> có nghĩa là gì?</div>
+            <div class="options-group">
+                <label class="option-label"><input type="radio" name="q15" value="A" required> A. Lớp học phụ đạo ngoài giờ</label>
+                <label class="option-label"><input type="radio" name="q15" value="B"> B. Lớp học chính quy / phổ thông</label>
+                <label class="option-label"><input type="radio" name="q15" value="C"> C. Lớp học dành riêng cho học sinh năng khiếu</label>
+                <label class="option-label"><input type="radio" name="q15" value="D"> D. Phòng thí nghiệm trực tuyến</label>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Gửi Bài Làm</button>
+    </form>
+
+    <div id="resultBox"></div>
+</div>
+
+<script>
+    function calculateScore(event) {
+        event.preventDefault();
+        
+        const answers = {
+            q1: "B", q2: "A", q3: "A", q4: "A", q5: "C",
+            q6: "A", q7: "A", q8: "C", q9: "B", q10: "A",
+            q11: "C", q12: "B", q13: "A", q14: "B", q15: "B"
+        };
+
+        let score = 0;
+        const total = 15;
+        const form = document.getElementById('quizForm');
+        const studentName = document.getElementById('studentName').value;
+
+        for (let i = 1; i <= total; i++) {
+            const selected = form.querySelector(`input[name="q${i}"]:checked`);
+            if (selected && selected.value === answers[`q${i}`]) {
+                score++;
+            }
+        }
+
+        const resultBox = document.getElementById('resultBox');
+        resultBox.style.display = 'block';
+        resultBox.innerHTML = `Chúc mừng <strong>${studentName}</strong>!<br>Kết quả bài làm của bạn: <strong>${score} / ${total}</strong> câu đúng.`;
+        resultBox.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
